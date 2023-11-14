@@ -1,16 +1,16 @@
 import validateEmail from './modules/validateEmail.js';
-// import {
-// 	validatePassword,
-// 	confirmPassword,
-// } from './modules/validatePassword.js';
-import validateZipCode from './modules/validateZipCode.js';
+import {
+	validatePassword,
+	confirmPassword,
+} from './modules/validatePassword.js';
+import { validateCountry, validateZip } from './modules/validateZipCode.js';
 
 const formEl = document.querySelector('form');
-const emailInput = document.getElementById('email');
 const countryInput = document.getElementById('country');
 const zipCodeInput = document.getElementById('zip-code');
-// const passwordInput = document.getElementById('password');
-// const confirmInput = document.getElementById('confirm-password');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const confirmInput = document.getElementById('confirm-password');
 
 function handleSubmit() {
 	/** handles data sent by form */
@@ -29,17 +29,14 @@ formEl.addEventListener('submit', (e) => {
 });
 
 emailInput.addEventListener('input', () => validateEmail(emailInput));
-// passwordInput.addEventListener('input', () =>
-// 	validatePassword(passwordInput, confirmInput)
-// );
-// confirmInput.addEventListener('input', () =>
-// 	confirmPassword(passwordInput, confirmInput)
-// );
-
-zipCodeInput.addEventListener('input', () =>
-	validateZipCode(countryInput, zipCodeInput)
+passwordInput.addEventListener('input', () =>
+	validatePassword(passwordInput, confirmInput)
+);
+confirmInput.addEventListener('input', () =>
+	confirmPassword(passwordInput, confirmInput)
 );
 
-countryInput.addEventListener('input', () =>
-	validateZipCode(countryInput, zipCodeInput)
+countryInput.addEventListener('input', () => validateCountry(countryInput));
+zipCodeInput.addEventListener('keyup', () =>
+	validateZip(countryInput, zipCodeInput)
 );
