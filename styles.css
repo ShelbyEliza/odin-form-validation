@@ -78,7 +78,7 @@ input.error {
 	box-shadow: none;
 }
 
-input.error:focus {
+input.err:focus {
 	outline: none;
 }
 
@@ -97,4 +97,8 @@ input.error:focus {
 
 .error-msg.active {
 	padding: 0.3em;
+}
+
+.err {
+	border-color: #900;
 }

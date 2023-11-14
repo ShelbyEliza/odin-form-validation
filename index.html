@@ -7,7 +7,8 @@
     <title>Form Validation</title>
     <link rel="stylesheet" href="styles.css">
 
-    <script src="index.js" defer></script>
+    <script type="module" src="index.js" defer></script>
+    <script type="module" src="./modules/validateEmail.js"></script>
   </head>
 
   <body>
@@ -16,7 +17,7 @@
         <h1>Welcome!</h1>
         <p>please signup below</p>
       </header>
-      <form novalidate>
+      <form>
         <label for="email" class="email">
           <span>Email:</span>
           <input type="email" id="email" minlength="6" maxlength="254" size="40" required>
@@ -27,13 +28,12 @@
           <select name="country" id="country" required>
             <option value="">--Select option--</option>
             <option value="us">United States</option>
-            <option value="uk">United Kingdom</option>
             <option value="fr">France</option>
-            <option value="be">Belgium</option>
+            <option value="nl">The Netherlands</option>
             <option value="de">Germany</option>
-            <option value="jp">Japan</option>
+            <!-- <option value="jp">Japan</option>
             <option value="kr">South Korea</option>
-            <option value="za">South Africa</option>
+            <option value="za">South Africa</option> -->
           </select>
 
         </label>
@@ -41,14 +41,15 @@
           <span>Zip Code:</span>
           <input type="text" name="zip-code" id="zip-code" required>
         </label>
-        <label for="password" class="password">
+        <!-- <label for="password" class="password">
           <span>Password:</span>
-          <input type="password" name="password" id="password" required>
+          <input type="password" name="password" id="password" minlength="8"
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$" required>
         </label>
         <label for="confirm-password" class="confirm-password">
           <span>Confirm Password:</span>
-          <input type="password" name="confirm-password" id="confirm-password" required>
-        </label>
+          <input type="password" name="confirm-password" id="confirm-password" minlength="8" required>
+        </label> -->
         <button type="submit" class="submit-btn">Validate!</button>
       </form>
     </section>

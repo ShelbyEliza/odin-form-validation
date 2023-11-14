@@ -1,65 +1,45 @@
+import validateEmail from './modules/validateEmail.js';
+// import {
+// 	validatePassword,
+// 	confirmPassword,
+// } from './modules/validatePassword.js';
+import validateZipCode from './modules/validateZipCode.js';
+
 const formEl = document.querySelector('form');
-const submitBtn = document.querySelector('button');
-// const emailInput = document.getElementById('email');
-// const countryInput = document.getElementById('country');
-// const zipCodeInput = document.getElementById('zip-code');
+const emailInput = document.getElementById('email');
+const countryInput = document.getElementById('country');
+const zipCodeInput = document.getElementById('zip-code');
 // const passwordInput = document.getElementById('password');
 // const confirmInput = document.getElementById('confirm-password');
 
-const inputEls = document.querySelectorAll('input, select');
-console.log(inputEls);
+function handleSubmit() {
+	/** handles data sent by form */
+}
 
-let errorMsg = {
-	email: '',
-	country: '',
-	zipCode: '',
-	password: '',
-	confirmPassword: '',
-};
-
+/** Event Listeners: */
 formEl.addEventListener('submit', (e) => {
+	e.preventDefault();
 	if (!formEl.checkValidity()) {
-		e.preventDefault();
-
-		validateInputs(inputEls);
+		console.log('Invalid Form');
 	} else {
-		e.preventDefault();
+		console.log('Valid Form');
+		console.log(zipCodeInput.checkValidity());
 		handleSubmit();
 	}
 });
 
-function validateInputs(inputs) {
-	inputs.forEach((input) => {
-		if (!input.validity.valid) {
-			showError(input);
-		}
-	});
-}
+emailInput.addEventListener('input', () => validateEmail(emailInput));
+// passwordInput.addEventListener('input', () =>
+// 	validatePassword(passwordInput, confirmInput)
+// );
+// confirmInput.addEventListener('input', () =>
+// 	confirmPassword(passwordInput, confirmInput)
+// );
 
-// function checkEmail() {
-//   if (!emailInput.validity.valid) {
-//     showError(emailInput);
-//   }
-// }
-// function checkCountry() {
-//   if (!countryInput.validity.valid) {
-//     showError(countryInput);
-//   }
-// }
+zipCodeInput.addEventListener('input', () =>
+	validateZipCode(countryInput, zipCodeInput)
+);
 
-// function checkZip() {
-//   if (!zipCodeInput.validity.valid) {
-//     showError(zipCodeInput);
-//   }
-// }
-
-function handleSubmit() {}
-
-function showError(input, inputError) {
-	// if (input.validity.valueMissing) {
-	// 	inputError.textContent = 'You need to enter a value.';
-	// } else if (input !== pages && input.validity.tooShort) {
-	// 	inputError.textContent = `${input.id} should be at least ${input.minLength} characters; you entered ${input.value.length}.`;
-	// }
-	// inputError.className = 'error active';
-}
+countryInput.addEventListener('input', () =>
+	validateZipCode(countryInput, zipCodeInput)
+);
